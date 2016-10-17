@@ -173,13 +173,13 @@ final class LoggerPrinter implements Printer {
             if (json.startsWith("{")) {
                 JSONObject jsonObject = new JSONObject(json);
                 String     message    = jsonObject.toString(JSON_INDENT);
-                d(message);
+                t("JSON", 2).d(message);
                 return;
             }
             if (json.startsWith("[")) {
                 JSONArray jsonArray = new JSONArray(json);
                 String    message   = jsonArray.toString(JSON_INDENT);
-                d(message);
+                t("JSON", 2).d(message);
                 return;
             }
             d(json);
