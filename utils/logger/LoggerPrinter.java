@@ -180,7 +180,9 @@ final class LoggerPrinter implements Printer {
                 JSONArray jsonArray = new JSONArray(json);
                 String    message   = jsonArray.toString(JSON_INDENT);
                 d(message);
+                return;
             }
+            d(json);
         } catch (JSONException e) {
             d(json);
         }
