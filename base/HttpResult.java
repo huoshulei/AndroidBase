@@ -5,7 +5,14 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 /**
- * Created by ICOGN on 2016/9/26.
+ * 项目名称:  MSHB
+ * 类描述:
+ * 创建人:    ICOGN
+ * 创建时间:  2016/9/26 14:05
+ * 修改人:    ICOGN
+ * 修改时间:  2016/9/26 14:05
+ * 备注:
+ * 版本:
  */
 
 public class HttpResult<T> {

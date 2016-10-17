@@ -10,7 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by huo on 30/06/16.
+ * 项目名称:  MSHB
+ * 类描述:
+ * 创建人:    huo
+ * 创建时间:  30/06/16 14:05
+ * 修改人:    huo
+ * 修改时间:  30/06/16 14:05
+ * 备注:
+ * 版本:
  */
 public abstract class FragmentPagerAdapter extends PagerAdapter {
     private static final String  TAG   = "FragmentPagerAdapter";

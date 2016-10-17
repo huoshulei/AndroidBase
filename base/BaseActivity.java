@@ -9,8 +9,11 @@ import android.widget.Toast;
 import com.example.icogn.mshb.MyApplication;
 import com.example.icogn.mshb.http.Http;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import butterknife.ButterKnife;
 import rx.Observable;
 import rx.Subscriber;
 
@@ -26,9 +29,16 @@ public abstract class BaseActivity extends AppCompatActivity {
         application = (MyApplication) getApplication();
         application.addActivities(this);
         if (map == null) map = new ArrayMap<>();
+        onCreate();
+        ButterKnife.bind(this);
         initView();
         initData();
     }
+
+    /**
+     * 关联布局
+     */
+    protected abstract void onCreate();
 
     /**
      * 加载布局
@@ -36,7 +46,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void initView();
 
     /**
-     * 初始化数据
+     * 绑定数据
      */
     protected abstract void initData();
 
@@ -67,7 +77,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
             @Override
             public void onNext(T t) {
-                BaseActivity.this.onNext(t);
+                BaseActivity.this.onNextObject(t);
                 BaseActivity.this.onNavigate();
             }
         });
@@ -75,7 +85,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * 错误
+     * 错误信息
      */
     protected void onError(String msg) {
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
@@ -96,10 +106,30 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * @param t   返回加载数据
-     * @param <T>
+     * @param o 返回加载数据
      */
-    protected <T> void onNext(T t) {
+    private void onNextObject(Object o) {
+        if (o instanceof ArrayList) {
+            if (((ArrayList) o).size() > 0)
+                onNext((ArrayList) o);
+        } else onNext(o);
+    }
+
+    /**
+     * 网络数据回调
+     *
+     * @param t 集合类型数据
+     */
+    protected void onNext(List t) {
+
+    }
+
+    /**
+     * 网络数据回调
+     *
+     * @param o 单个数据
+     */
+    protected void onNext(Object o) {
 
     }
 

@@ -26,7 +26,14 @@ import android.widget.ImageView;
 import com.example.icogn.mshb.R;
 
 /**
- * Created by ICOGN on 2016/9/26.
+ * 项目名称:  MSHB
+ * 类描述:
+ * 创建人:    ICOGN
+ * 创建时间:  2016/9/26 15:52
+ * 修改人:    ICOGN
+ * 修改时间:  2016/9/26 15:52
+ * 备注:
+ * 版本:
  */
 
 public class CircleTextImageView extends ImageView {
@@ -37,7 +44,7 @@ public class CircleTextImageView extends ImageView {
 
     private static final Bitmap.Config BITMAP_CONFIG = Bitmap.Config.ARGB_8888;
 
-    private static final int COLORDRAWABLE_DIMENSION = 2;
+    private static final int COLOR_DRAWABLE_DIMENSION = 2;
 
 
     private static final int DEFAULT_BORDER_WIDTH = 0;
@@ -558,7 +565,7 @@ public class CircleTextImageView extends ImageView {
 
             if (drawable instanceof ColorDrawable) {
 
-                bitmap = Bitmap.createBitmap(COLORDRAWABLE_DIMENSION, COLORDRAWABLE_DIMENSION, BITMAP_CONFIG);
+                bitmap = Bitmap.createBitmap(COLOR_DRAWABLE_DIMENSION, COLOR_DRAWABLE_DIMENSION, BITMAP_CONFIG);
 
             } else {
 

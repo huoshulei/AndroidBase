@@ -18,13 +18,16 @@ import com.example.icogn.mshb.rests.idea.IdeaActivity;
 import java.util.List;
 
 /**
- * Created by ICOGN on 2016/9/19.
+ * 项目名称:  MSHB
+ * 类描述:
+ * 创建人:    ICOGN
+ * 创建时间:  2016/9/19 15:55
+ * 修改人:    ICOGN
+ * 修改时间:  2016/9/19 15:55
+ * 备注:
+ * 版本:
  */
 public class TelOffer extends LinearLayout implements View.OnClickListener {
-    TextView tvOfferHome;
-    TextView tvOfferTel;
-    TextView tvOfferIdea;
-    private static final String TAG = "TelOffer";
 
     public TelOffer(Context context) {
         this(context, null);
@@ -37,12 +40,9 @@ public class TelOffer extends LinearLayout implements View.OnClickListener {
     public TelOffer(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         View.inflate(context, R.layout.layout_tel_offer, this);
-        tvOfferTel = (TextView) findViewById(R.id.tv_offer_tel);
-        tvOfferIdea = (TextView) findViewById(R.id.tv_offer_idea);
-        tvOfferHome = (TextView) findViewById(R.id.tv_offer_home);
-        tvOfferTel.setOnClickListener(this);
-        tvOfferIdea.setOnClickListener(this);
-        tvOfferHome.setOnClickListener(this);
+        findViewById(R.id.tv_offer_tel).setOnClickListener(this);
+        findViewById(R.id.tv_offer_idea).setOnClickListener(this);
+        findViewById(R.id.tv_offer_home).setOnClickListener(this);
     }
 
     public void onClick(View view) {

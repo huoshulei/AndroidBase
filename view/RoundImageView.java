@@ -12,7 +12,14 @@ import android.util.AttributeSet;
 import android.widget.ImageView;
 
 /**
- * Created by ICOGN on 2016/9/20.
+ * 项目名称:  MSHB
+ * 类描述:
+ * 创建人:    ICOGN
+ * 创建时间:  2016/9/20 15:54
+ * 修改人:    ICOGN
+ * 修改时间:  2016/9/20 15:54
+ * 备注:
+ * 版本:
  */
 
 public class RoundImageView extends ImageView {

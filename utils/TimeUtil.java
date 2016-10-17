@@ -8,7 +8,6 @@ import java.net.URLConnection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 /**
  * Created by ICOGN on 2016/9/26.
@@ -16,15 +15,15 @@ import java.util.Locale;
 
 public class TimeUtil {
 
-    public static final String FORMAT_TYPE   = "yyyy年MM月dd日 HH时mm分ss秒";
-    public static final String FORMAT_TYPE_1 = "yyyy-MM-dd HH:mm:ss";
-    public static final String FORMAT_TYPE_2 = "HH:mm";
-    public static final String webUrl1       = "http://www.bjtime.cn";//bjTime
-    public static final String webUrl2       = "http://www.baidu.com";//百度
-    public static final String webUrl3       = "http://www.taobao.com";//淘宝
-    public static final String webUrl4       = "http://www.ntsc.ac.cn";//中国科学院国家授时中心
-    public static final String webUrl5       = "http://www.360.cn";//360
-    public static final String webUrl6       = "http://www.beijing-time.org";//beijing-time
+    public static final  String YYYY年_MM月DD日_HH时MM分SS     = "yyyy年MM月dd日 HH时mm分ss秒";
+    public static final  String YYYY_MM_DD_HH_MM_SS       = "yyyy-MM-dd HH:mm:ss";
+    private static final  String HH_MM                     = "HH:mm";
+    private static final  String HTTP_WWW_BJTIME_CN        = "http://www.bjtime.cn";//bjTime
+    private static final  String HTTP_WWW_BAIDU_COM        = "http://www.baidu.com";//百度
+    private static final  String HTTP_WWW_TAOBAO_COM       = "http://www.taobao.com";//淘宝
+    private static final String HTTP_WWW_NTSC_AC_CN       = "http://www.ntsc.ac.cn";//中国科学院国家授时中心
+    private static final  String HTTP_WWW_360_CN           = "http://www.360.cn";//360
+    private static final  String HTTP_WWW_BEIJING_TIME_ORG = "http://www.beijing-time.org";//beijing-time
 
     private TimeUtil() {
         throw new UnsupportedOperationException("u can't fuck me...");
@@ -128,7 +127,7 @@ public class TimeUtil {
      * @throws ParseException
      */
     public static String stringToString(String time) throws ParseException {
-        return longToString(stringToLong(time, FORMAT_TYPE_1), FORMAT_TYPE_2);
+        return longToString(stringToLong(time, YYYY_MM_DD_HH_MM_SS), HH_MM);
     }
 
     /**
@@ -144,16 +143,14 @@ public class TimeUtil {
 
     public static String getWebDateTime() {
         try {
-            URL           url = new URL(webUrl4);// 取得资源对象
+            URL           url = new URL(HTTP_WWW_NTSC_AC_CN);// 取得资源对象
             URLConnection uc  = url.openConnection();// 生成连接对象
             uc.connect();// 发出连接
-            long ld = uc.getDate()/1000;// 读取网站日期时间
+            long ld = uc.getDate() / 1000;// 读取网站日期时间
             return String.valueOf(ld);
 //            Date date = new Date(ld);// 转换为标准时间对象
 //            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);// 输出北京时间
 //            return sdf.format(date);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -4,7 +4,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
- * Created by ICOGN on 2016/9/28.
+ * 项目名称:  MSHB
+ * 类描述:
+ * 创建人:    ICOGN
+ * 创建时间:  2016/9/28 15:49
+ * 修改人:    ICOGN
+ * 修改时间:  2016/9/28 15:49
+ * 备注:
+ * 版本:
  */
 
 public class SPUtils {
@@ -17,7 +24,7 @@ public class SPUtils {
      * SP的name值
      * <p>可通过修改PREFERENCE_NAME变量修改SP的name值</p>
      */
-    public static String PREFERENCE_NAME = "SHB";
+    private static final String  PREFERENCE_NAME = "SHB";
 
     /**
      * SP中写入String类型value

@@ -1,11 +1,12 @@
 package com.example.icogn.mshb.http;
 
-import android.util.Log;
 
 import com.example.icogn.mshb.BuildConfig;
 import com.example.icogn.mshb.base.HttpResult;
 import com.example.icogn.mshb.entity.User;
 import com.example.icogn.mshb.exception.ApiException;
+import com.example.icogn.mshb.utils.logger.Logger;
+
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -17,6 +18,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.Route;
 import okhttp3.logging.HttpLoggingInterceptor;
+import okhttp3.logging.HttpLoggingInterceptor.Level;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -38,7 +40,7 @@ import rx.schedulers.Schedulers;
  */
 public enum Http {
     HTTP;
-    //    private final String BASE_URL = "http://192.168.1.88:8084/icogn/";
+    //        private final String BASE_URL = "http://192.168.1.88:8084/icogn/";
 //        private final String BASE_URL = "http://icogns.oicp.net:11465/icogn/";
     private final String BASE_URL = "http://101.200.126.206/";
     private Retrofit     retrofit;
@@ -48,8 +50,6 @@ public enum Http {
     private NewsApi      newsApi;
     private CommodityApi commodityApi;
     private AddressApi   addressApi;
-    private static final String TAG = "Http";
-    private final HttpLoggingInterceptor.Level level;
 
     /**
      * @return 商品相关api
@@ -94,12 +94,10 @@ public enum Http {
 
     //单例
     Http() {
-        if (BuildConfig.DEBUG) level = HttpLoggingInterceptor.Level.BODY;
-        else level = HttpLoggingInterceptor.Level.NONE;
         if (client == null) {
             client = new OkHttpClient.Builder()
-                    .addInterceptor(new HttpLoggingInterceptor()
-                            .setLevel(level))
+                    .addInterceptor(new HttpLoggingInterceptor(logger)
+                            .setLevel(BuildConfig.DEBUG ? Level.BODY : Level.NONE))
                     .retryOnConnectionFailure(true)
                     .connectTimeout(15, TimeUnit.SECONDS)
                     .addNetworkInterceptor(tokenInterceptor)
@@ -118,13 +116,22 @@ public enum Http {
     }
 
     /**
+     * log日志
+     */
+    HttpLoggingInterceptor.Logger logger           = new HttpLoggingInterceptor.Logger() {
+        @Override
+        public void log(String message) {
+            Logger.j(message);
+        }
+    };
+    /**
      * 日志拦截
      */
 //    HttpLoggingInterceptor interceptor      = new HttpLoggingInterceptor();
     /**
      * token拦截
      */
-    Interceptor   tokenInterceptor = new Interceptor() {
+    Interceptor                   tokenInterceptor = new Interceptor() {
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request();
@@ -139,7 +146,7 @@ public enum Http {
     /**
      * 刷新token
      */
-    Authenticator authenticator    = new Authenticator() {
+    Authenticator                 authenticator    = new Authenticator() {
         /**
          * Returns a request that includes a credential to satisfy an authentication challenge in {@code
          * response}. Returns null if the challenge cannot be satisfied.
@@ -189,12 +196,9 @@ public enum Http {
     private class Func<T> implements Func1<HttpResult<T>, T> {
         @Override
         public T call(HttpResult<T> result) {
-            Log.d(TAG, "call: 000000000000000000000000000000" + result.getState() + result.getResult());
-            Log.d(TAG, "call: 000000000000000000000000000000" + result.getData());
             if (result.getResult() != 200) {
                 throw new ApiException(result.getState());
             }
-            Log.d(TAG, "call: 0000000000000000000000000");
             return result.getData();
 
         }

@@ -48,7 +48,7 @@ public class MyToolbar extends Toolbar {
         CharSequence title = a.getText(R.styleable.MyToolbar_titleText);
         if (!TextUtils.isEmpty(title)) {
             setTitle(title);
-        }
+        } else setTitle("");
     }
 
     @Override

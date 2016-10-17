@@ -1,7 +1,14 @@
 package com.example.icogn.mshb.view;
 
 /**
- * Created by ICOGN on 2016/9/10.
+ * 项目名称:  MSHB
+ * 类描述:
+ * 创建人:    ICOGN
+ * 创建时间:  2016/9/10 15:53
+ * 修改人:    ICOGN
+ * 修改时间:  2016/9/10 15:53
+ * 备注:
+ * 版本:
  */
 /*
  * Copyright (C) 2012 The Android Open Source Project
@@ -80,7 +87,7 @@ public class FragmentTabHost extends TabHost
     static class DummyTabFactory implements TabHost.TabContentFactory {
         private final Context mContext;
 
-        public DummyTabFactory(Context context) {
+        DummyTabFactory(Context context) {
             mContext = context;
         }
 
