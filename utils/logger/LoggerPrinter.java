@@ -224,7 +224,7 @@ final class LoggerPrinter implements Printer {
             message = Helper.getStackTraceString(throwable);
         }
         if (message == null) {
-            message = "No message/exception is set";
+            message = "没有设置日志信息";
         }
         int methodCount = getMethodCount();
         if (Helper.isEmpty(message)) {
