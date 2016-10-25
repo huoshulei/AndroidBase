@@ -1,49 +1,52 @@
 package com.example.icogn.mshb.base;
 
+import android.support.annotation.LayoutRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.ArrayMap;
-import android.util.Log;
-import android.widget.Toast;
 
-import com.example.icogn.mshb.MyApplication;
-import com.example.icogn.mshb.http.Http;
+import com.example.icogn.mshb.App;
+import com.example.icogn.mshb.http.Api;
+import com.example.icogn.mshb.utils.logger.Logger;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import butterknife.ButterKnife;
-import rx.Observable;
-import rx.Subscriber;
+import io.reactivex.Flowable;
+import io.reactivex.functions.Consumer;
+
+import static com.example.icogn.mshb.http.Http.HTTP;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
-    private MyApplication application;
-    private static final String TAG = "BaseActivity";
     protected Map<String, String> map;
+    protected final Api api = HTTP.api;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        application = (MyApplication) getApplication();
-        application.addActivities(this);
+        init0();
         if (map == null) map = new ArrayMap<>();
-        onCreate();
-        ButterKnife.bind(this);
-        initView();
+        App.application.addActivities(this);
+        configView();
         initData();
     }
 
-    /**
-     * 关联布局
-     */
-    protected abstract void onCreate();
+    protected void init0() {
+        int layoutResId = getLayoutResId();
+        if (layoutResId == 0) throw new NullPointerException("布局文件不能为空");
+        setContentView(layoutResId);
+        ButterKnife.bind(this);
+    }
+
+    protected abstract
+    @LayoutRes
+    int getLayoutResId();
 
     /**
      * 加载布局
      */
-    protected abstract void initView();
+    protected abstract void configView();
 
     /**
      * 绑定数据
@@ -52,43 +55,28 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     public void finish() {
-        if (application.getActivities().remove(this))
+        if (App.application.getActivities().remove(this))
             super.finish();
     }
 
-    protected <T> void http(Observable<HttpResult<T>> observable) {
-        Http.HTTP.http(observable, new Subscriber<T>() {
-            @Override
-            public void onStart() {
-                BaseActivity.this.showProgress();
-            }
 
-            @Override
-            public void onCompleted() {
-                BaseActivity.this.dismissProgress();
-            }
+    protected final <T> void http(Flowable<HttpResult<T>> f, Consumer<T> onNext) {
+        showProgress();
+        HTTP.http(f, onNext, e -> onError(e.getMessage()), this::onComplete);
+    }
 
-            @Override
-            public void onError(Throwable e) {
-                BaseActivity.this.dismissProgress();
-                BaseActivity.this.onError(e.getMessage());
-                Log.d(TAG, "onError: " + e.getLocalizedMessage());
-            }
-
-            @Override
-            public void onNext(T t) {
-                BaseActivity.this.onNextObject(t);
-                BaseActivity.this.onNavigate();
-            }
-        });
-
+    private void onComplete() {
+        dismissProgress();
+        onNavigate();
     }
 
     /**
      * 错误信息
      */
     protected void onError(String msg) {
-        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
+        App.toast(msg);
+        dismissProgress();
+        Logger.e("BaseActivity onError:" + msg);
     }
 
     /**
@@ -105,33 +93,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * @param o 返回加载数据
-     */
-    private void onNextObject(Object o) {
-        if (o instanceof ArrayList) {
-            if (((ArrayList) o).size() > 0)
-                onNext((ArrayList) o);
-        } else onNext(o);
-    }
-
-    /**
-     * 网络数据回调
-     *
-     * @param t 集合类型数据
-     */
-    protected void onNext(List t) {
-
-    }
-
-    /**
-     * 网络数据回调
-     *
-     * @param o 单个数据
-     */
-    protected void onNext(Object o) {
-
-    }
 
     /**
      * 页面导航

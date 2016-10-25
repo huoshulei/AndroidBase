@@ -17,14 +17,17 @@ import java.util.List;
 
 public class HttpResult<T> {
     @SerializedName("success")
-    private int    result;
+    private int    resultCode;
     @SerializedName("msg")
     private String state;
     @SerializedName("data")
     private T      data;
 
-    public int getResult() {
-        return result;
+    public HttpResult() {
+    }
+
+    public int getResultCode() {
+        return resultCode;
     }
 
     public String getState() {
