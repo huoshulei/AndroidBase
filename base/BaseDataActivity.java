@@ -22,6 +22,10 @@ public abstract class BaseDataActivity extends BaseActivity {
         binding.setVariable(BR.data, data);
     }
 
+    public final void setModule(Object data) {
+        binding.setVariable(BR.module, data);
+    }
+
     public final void setData(int id, Object data) {
         binding.setVariable(id, data);
     }

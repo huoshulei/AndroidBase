@@ -28,7 +28,9 @@ public abstract class BaseDataFragment extends BaseFragment {
     public final void setData(Object data) {
         binding.setVariable(BR.data, data);
     }
-
+    public final void setModule(Object data) {
+        binding.setVariable(BR.module, data);
+    }
     public final void setData(int id, Object data) {
         binding.setVariable(id, data);
     }

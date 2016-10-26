@@ -38,7 +38,7 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (view == null) {
             view = init(inflater, container);
-            configView();
+            configView(view);
             initData();
             onFirstNet();
         }
@@ -64,7 +64,7 @@ public abstract class BaseFragment extends Fragment {
     /**
      * 初始化布局组件
      */
-    protected void configView() {
+    protected void configView(View view) {
 
     }
 
@@ -77,10 +77,12 @@ public abstract class BaseFragment extends Fragment {
 
     protected final <T> void http(Flowable<HttpResult<T>> f, Consumer<T> onNext) {
         showProgress();
-        Http.HTTP.http(f, onNext, e -> onError(e.getMessage()), () -> {
-            dismissProgress();
-            onNavigate();
-        });
+        Http.HTTP.http(f, onNext, e -> onError(e.getMessage()), this::onComplete);
+    }
+
+    private void onComplete() {
+        dismissProgress();
+        onNavigate();
     }
 
     /**
