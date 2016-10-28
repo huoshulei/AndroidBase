@@ -16,15 +16,17 @@ public abstract class BaseDataActivity extends BaseActivity {
         int layoutResId = getLayoutResId();
         if (layoutResId == 0) throw new NullPointerException("布局文件不能为空");
         binding = DataBindingUtil.setContentView(this, layoutResId);
+        setModule(this);
     }
 
     public final void setData(Object data) {
         binding.setVariable(BR.data, data);
     }
 
-    public final void setModule(Object data) {
+    private  void setModule(Object data) {
         binding.setVariable(BR.module, data);
     }
+
 
     public final void setData(int id, Object data) {
         binding.setVariable(id, data);

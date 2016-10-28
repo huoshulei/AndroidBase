@@ -11,6 +11,9 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.CircleBitmapDisplayer;
 
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrUIHandler;
+
 /**
  * 项目名称:  MSHB
  * 类描述:
@@ -40,6 +43,8 @@ public class DataBindAdapter {
     public static void setImageRes(ImageView view, int resId) {
         view.setImageResource(resId);
     }
+
+
 
 
     /**

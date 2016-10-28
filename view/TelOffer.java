@@ -5,12 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.example.icogn.mshb.MyApplication;
+import com.example.icogn.mshb.App;
 import com.example.icogn.mshb.R;
 import com.example.icogn.mshb.base.BaseActivity;
 import com.example.icogn.mshb.rests.idea.IdeaActivity;
@@ -48,13 +46,11 @@ public class TelOffer extends LinearLayout implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_offer_home:
-                MyApplication application = (MyApplication) (getContext().getApplicationContext());
-                List<BaseActivity> activities = application.getActivities();
+                List<BaseActivity> activities = App.application.getActivities();
                 for (Activity activity : activities) {
                     BaseActivity baseActivity = (BaseActivity) activity;
                     baseActivity.finish();
                 }
-//                getContext().startActivity(new Intent(getContext(), MainActivity.class));
                 break;
             case R.id.tv_offer_tel:
                 Intent intent = new Intent(Intent.ACTION_DIAL);

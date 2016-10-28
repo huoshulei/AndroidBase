@@ -45,6 +45,8 @@ public abstract class BaseFragment extends Fragment {
         return view;
     }
 
+
+
     protected View init(LayoutInflater inflater, ViewGroup container) {
         int layoutResId = getLayoutResId();
         if (layoutResId == 0) throw new NullPointerException("布局文件不能为空");

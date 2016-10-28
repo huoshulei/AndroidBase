@@ -5,13 +5,11 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.TintTypedArray;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.icogn.mshb.R;
@@ -28,9 +26,9 @@ import com.example.icogn.mshb.R;
  */
 
 public class MyToolbar extends Toolbar {
-    TextView mTitleTextView;
-    int      mTitleTextSize;
-    int      mTitleTextColor;
+    private TextView mTitleTextView;
+    private int      mTitleTextSize;
+    private int      mTitleTextColor;
 
     public MyToolbar(Context context) {
         this(context, null);
@@ -56,7 +54,6 @@ public class MyToolbar extends Toolbar {
         super.setTitle("");
         if (mTitleTextView == null) {
             mTitleTextView = new AppCompatTextView(getContext());
-//        mTitleTextView.setGravity(Gravity.CENTER_HORIZONTAL);
             LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL);
 
             mTitleTextView.setTextSize(mTitleTextSize);

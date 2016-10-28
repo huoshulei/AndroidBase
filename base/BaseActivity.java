@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.util.ArrayMap;
 
 import com.example.icogn.mshb.App;
+import com.example.icogn.mshb.R;
 import com.example.icogn.mshb.http.Api;
 import com.example.icogn.mshb.utils.logger.Logger;
+import com.example.icogn.mshb.view.MyToolbar;
 
 import java.util.Map;
 
@@ -21,24 +23,31 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected Map<String, String> map;
     protected final Api api = HTTP.api;
+    protected MyToolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         init0();
+        toolbar = (MyToolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         if (map == null) map = new ArrayMap<>();
         App.application.addActivities(this);
         configView();
         initData();
     }
 
+
+
     protected void init0() {
         int layoutResId = getLayoutResId();
         if (layoutResId == 0) throw new NullPointerException("布局文件不能为空");
         setContentView(layoutResId);
-        ButterKnife.bind(this);
+//        ButterKnife.bind(this);
     }
-
+    public void setToolbar(String title) {
+        toolbar.setTitle(title);
+    }
     protected abstract
     @LayoutRes
     int getLayoutResId();
