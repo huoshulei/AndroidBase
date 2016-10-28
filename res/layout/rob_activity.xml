@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <com.example.icogn.mshb.view.MyToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/background"
+        app:titleTextSize="@dimen/dimen_10sp"
+        app:titleColor="@color/tab_color"
+        android:layout_marginBottom="@dimen/dimen_1dp"
+        app:titleText="@string/rob"
+        app:navigationIcon="@drawable/left_back"/>
+    <!--content-->
+    <fragment
+        android:id="@+id/fragment"
+        android:name="com.example.icogn.mshb.shb.main.home.rob.fragment.RobFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout="@layout/rob_fragment"/>
+</LinearLayout>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.icogn.mshb.register.RegisterBean" />
+
+        <variable
+            name="module"
+            type="com.example.icogn.mshb.register.VerifyFragment" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <!-- TODO: Update blank fragment layout -->
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_2dp"
+            android:background="@color/background" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="@color/white"
+            android:enabled="@{!data.timing?!data.progress:!data.timing}"
+            android:hint="输入手机号"
+            android:lines="1"
+            android:inputType="number"
+            android:padding="@dimen/dimen_16dp"
+            android:text="@={data.phone}"
+            android:textSize="@dimen/dimen_14sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1dp"
+            android:layout_marginLeft="@dimen/dimen_16dp"
+            android:layout_marginRight="@dimen/dimen_16dp"
+            android:background="@color/background" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingRight="@dimen/dimen_16dp">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@color/white"
+                android:enabled="@{!data.progress}"
+                android:hint="输入验证码"
+                android:lines="1"
+                android:padding="@dimen/dimen_16dp"
+                android:text="@={data.authCode}"
+                android:textSize="@dimen/dimen_14sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/dimen_10dp"
+                android:layout_weight="1"
+                android:background="@drawable/text_background"
+                android:enabled="@{!data.timing?!data.progress:!data.timing}"
+                android:gravity="center"
+                android:onClick="@{module.auth}"
+                android:text="@{data.time}"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1dp"
+            android:layout_marginLeft="@dimen/dimen_16dp"
+            android:layout_marginRight="@dimen/dimen_16dp"
+            android:background="@color/background" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_16dp"
+            android:layout_marginRight="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_80dp"
+            android:background="@drawable/text_background"
+            android:enabled="@{!data.progress}"
+            android:gravity="center"
+            android:onClick="@{module.next}"
+            android:padding="8dp"
+            android:text="下一步"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+</layout>

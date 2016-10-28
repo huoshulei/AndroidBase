@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <com.example.icogn.mshb.view.MyToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        app:navigationIcon="@drawable/left_back"
+        app:theme="@style/toolbarTheme"
+        app:titleColor="@color/text_background"
+        app:titleText="注册"
+        app:titleTextSize="@dimen/dimen_10sp" />
+
+    <FrameLayout
+        android:id="@+id/fl_register"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.icogn.mshb.entity.RobCommodityEntity" />
+
+        <variable
+            name="module"
+            type="com.example.icogn.mshb.shb.main.home.rob.fragment.RobFragment" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_110dp"
+        android:orientation="horizontal"
+        android:onClick="@{()->module.commodityInfo(data)}"
+        android:padding="@dimen/dimen_5dp">
+
+        <ImageView
+            android:layout_width="@dimen/dimen_100dp"
+            android:layout_height="@dimen/dimen_100dp"
+            android:padding="@dimen/dimen_5dp"
+            android:src="@{data.icon}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@{data.name}"
+                android:textSize="@dimen/dimen_16sp" />
+
+            <TextView
+                android:id="@+id/tv_rob_commodity_item_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_5dp"
+                android:text="@{data.num}"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/dimen_12sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/dimen_10dp"
+                    android:layout_marginLeft="@dimen/dimen_10dp"
+                    android:text="@{data.price}"
+                    android:textColor="@color/hot_text_color"
+                    android:textSize="@dimen/dimen_18sp" />
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_30dp"
+                    android:layout_height="@dimen/dimen_30dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="@dimen/dimen_10dp"
+                    android:layout_marginRight="@dimen/dimen_10dp"
+                    android:onClick="@{()->module.addCar(data)}"
+                    android:src="@mipmap/shop_car_circle"
+                    android:visibility="@{data.start?View.VISIBLE:View.GONE}" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

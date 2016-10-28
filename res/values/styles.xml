@@ -1,0 +1,43 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
+        <!--<item name="android:windowIsTranslucent">true</item>-->
+    </style>
+    <!--dialog activity-->
+    <style name="Theme.MyDialog" parent="android:style/Theme.Dialog">
+        <item name="android:background">@drawable/my_dialog_background_color</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <!--toolbar title-->
+    <style name="toolbarText">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/tab_color</item>
+    </style>
+    <!--toolbar-->
+    <style name="toolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="actionMenuTextColor">@color/text_background</item>
+        <item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item>
+    </style>
+
+    <!--溢出菜单-->
+    <style name="OverflowMenuStyle" parent="@style/Widget.AppCompat.Light.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item>
+        <item name="android:dropDownWidth">wrap_content</item>
+        <item name="android:paddingRight">5dp</item>
+    </style>
+
+    <style name="PopupWindow">
+        <item name="android:windowEnterAnimation">@anim/pic_info_bottom_show</item>
+        <item name="android:windowExitAnimation">@anim/pic_info_bottom_dismiss</item>
+    </style>
+    <style name="home_tab">
+        <item name="android:actionMenuTextColor">@color/text</item>
+    </style>
+</resources>

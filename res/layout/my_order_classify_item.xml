@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.icogn.mshb.entity.OrderStateEntity" />
+
+        <variable
+            name="module"
+            type="com.example.icogn.mshb.shb.main.my.MyFragment" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.example.icogn.mshb.view.BadgeButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/dimen_5dp"
+            android:drawableTop="@{data.icon}"
+            android:gravity="center"
+            android:lines="1"
+            android:onClick="@{()->module.orderClass(data)}"
+            android:paddingBottom="@dimen/dimen_10dp"
+            android:paddingTop="@dimen/dimen_10dp"
+            android:text="@{data.name}"
+            android:textSize="@dimen/dimen_12sp"
+            app:badgeColor="#ff9c41"
+            app:badgeText='@{data.num+""}'
+            app:badgeVisible="@{data.num==0?false:true}" />
+    </LinearLayout>
+</layout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:clipToPadding="true"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+
+        <com.example.icogn.mshb.view.MyToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background"
+            android:minHeight="?attr/actionBarSize"
+            app:navigationIcon="@drawable/left_back"
+            app:titleColor="@color/tab_color"
+            app:titleText="@string/manage_address"
+            app:titleTextSize="@dimen/dimen_10sp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_select_address"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginBottom="@dimen/dimen_1dp"
+            android:layout_marginTop="@dimen/dimen_1dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimen_10dp"
+            android:background="@drawable/text_background"
+            android:onClick="addAddress"
+            android:text="@string/add_address"
+            android:textColor="@color/white" />
+    </LinearLayout>

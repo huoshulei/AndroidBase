@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+    <com.example.icogn.mshb.view.MyToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextSize="@dimen/dimen_10sp"
+        app:titleColor="@color/tab_color"
+        app:titleText="@string/affirm_order"
+        app:navigationIcon="@drawable/left_back"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_consignee_address"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_100dp"
+        android:background="@color/white"
+        android:padding="@dimen/dimen_10dp">
+
+        <ImageView
+            android:id="@+id/iv_consignee_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimen_10dp"
+            android:src="@mipmap/index_03" />
+
+        <TextView
+            android:id="@+id/tv_consignee_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_consignee_left"
+            android:text="收货人：" />
+
+        <TextView
+            android:id="@+id/tv_consignee_tel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/iv_consignee_right"/>
+
+        <TextView
+            android:id="@+id/tv_consignee_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_consignee_name"
+            android:layout_toLeftOf="@+id/iv_consignee_right"
+            android:layout_toRightOf="@+id/iv_consignee_left"
+            android:lines="2"
+            android:text="收货地址：" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/iv_consignee_right"
+            android:layout_toRightOf="@+id/iv_consignee_left"
+            android:text="@string/consignee_helper"
+            android:textColor="@color/hot_text_color" />
+
+        <ImageView
+            android:id="@+id/iv_consignee_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/dimen_10dp"
+            android:src="@mipmap/right" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dimen_1dp"
+        android:layout_marginTop="@dimen/dimen_10dp"
+        android:background="@color/white"
+        android:padding="@dimen/dimen_10dp"
+        android:text="@string/app_name" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_order_message"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_50dp"
+        android:layout_marginTop="@dimen/dimen_1dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tv_order_message"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|right" />
+
+        <TextView
+            android:id="@+id/tv_push_order"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dimen_5dp"
+            android:background="@color/text_background"
+            android:gravity="center"
+            android:paddingLeft="@dimen/dimen_20dp"
+            android:paddingRight="@dimen/dimen_20dp"
+            android:text="@string/push_order" />
+    </LinearLayout>
+</LinearLayout>

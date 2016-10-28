@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.example.icogn.mshb.view.MyToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:minHeight="?attr/actionBarSize"
+            app:navigationIcon="@drawable/left_back"
+            app:titleColor="@color/tab_color"
+            app:titleText="@string/setting"
+            app:titleTextSize="@dimen/dimen_10sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:background="@color/white"
+            android:drawableLeft="@drawable/personal_info"
+            android:drawablePadding="@dimen/dimen_10dp"
+            android:drawableRight="@drawable/right"
+            android:gravity="center_vertical"
+            android:onClick="aboutMe"
+            android:padding="@dimen/dimen_10dp"
+            android:text="@string/my_about"
+            android:textSize="@dimen/dimen_18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:background="@color/white"
+            android:drawableLeft="@drawable/addr"
+            android:drawablePadding="@dimen/dimen_10dp"
+            android:drawableRight="@drawable/right"
+            android:gravity="center_vertical"
+            android:onClick="address"
+            android:padding="@dimen/dimen_10dp"
+            android:text="@string/my_manage_address"
+            android:textSize="@dimen/dimen_18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:background="@color/white"
+            android:drawableLeft="@drawable/news"
+            android:drawablePadding="@dimen/dimen_10dp"
+            android:drawableRight="@drawable/right"
+            android:gravity="center_vertical"
+            android:onClick="message"
+            android:padding="@dimen/dimen_10dp"
+            android:text="@string/new_message"
+            android:textSize="@dimen/dimen_18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_1dp"
+            android:background="@color/white"
+            android:drawablePadding="@dimen/dimen_10dp"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dimen_10dp"
+            android:textSize="@dimen/dimen_18sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:background="@color/white"
+            android:drawablePadding="@dimen/dimen_10dp"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dimen_10dp"
+            android:textSize="@dimen/dimen_18sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:background="@color/white"
+            android:drawableLeft="@drawable/about"
+            android:drawablePadding="@dimen/dimen_10dp"
+            android:drawableRight="@drawable/right"
+            android:gravity="center_vertical"
+            android:onClick="about"
+            android:padding="@dimen/dimen_10dp"
+            android:text="@string/about_shb"
+            android:textSize="@dimen/dimen_18sp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/text_background"
+        android:gravity="center"
+        android:onClick="outLogin"
+        android:padding="@dimen/dimen_16dp"
+        android:text="@string/log_out"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dimen_18sp" />
+</RelativeLayout>

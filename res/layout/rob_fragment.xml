@@ -1,0 +1,73 @@
+<layout>
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.icogn.mshb.shb.main.home.rob.fragment.RobTabBean" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- TODO: Update blank fragment layout -->
+
+        <!--<fragment-->
+        <!--android:id="@+id/fm_seek"-->
+        <!--android:name="com.example.icogn.mshb.view.SeekView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dimen_50dp"-->
+        <!--tools:layout="@layout/layout_scan"/>-->
+        <!--<com.example.icogn.mshb.view.Seek-->
+            <!--android:id="@+id/seek"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
+
+        <LinearLayout
+            android:id="@+id/ll_time"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40dp"
+            android:layout_marginTop="@dimen/dimen_50dp"
+            android:background="@color/halving_line"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:drawablePadding="@dimen/dimen_5dp"
+                android:drawableRight="@drawable/ic_alarm_yellow_24dp"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dimen_10dp"
+                android:text="@{data.timing}" />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_rob_tab"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_60dp" />
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ll_time">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_rob_commodity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.example.icogn.mshb.view.TelOffer
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </RelativeLayout>
+</layout>

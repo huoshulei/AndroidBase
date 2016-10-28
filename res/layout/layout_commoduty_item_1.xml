@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dimen_2dp"
+    android:background="@color/white"
+    android:padding="@dimen/dimen_5dp">
+
+    <ImageView
+        android:id="@+id/iv_commodity_item_icon"
+        android:layout_width="@dimen/dimen_60dp"
+        android:layout_height="@dimen/dimen_60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/dimen_10dp" />
+
+
+    <TextView
+        android:id="@+id/tv_commodity_item_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_commodity_item_icon"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:lines="2"
+        android:text="11111111111111111111"
+        android:textSize="@dimen/dimen_14sp" />
+
+    <TextView
+        android:id="@+id/tv_commodity_item_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_commodity_item_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dimen_2dp"
+        android:text="￥19.8"
+        android:textColor="@color/yellow"
+        android:textSize="@dimen/dimen_14sp" />
+
+    <ImageView
+        android:id="@+id/iv_commodity_item_shop"
+        android:layout_width="@dimen/dimen_30dp"
+        android:layout_height="@dimen/dimen_30dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/tv_commodity_item_price"
+        android:layout_marginBottom="@dimen/dimen_10dp"
+        android:layout_marginRight="@dimen/dimen_10dp"
+        android:src="@mipmap/shop_car_circle" />
+</RelativeLayout>

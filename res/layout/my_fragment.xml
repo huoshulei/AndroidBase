@@ -1,0 +1,321 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.icogn.mshb.shb.main.my.UserBean" />
+
+        <variable
+            name="module"
+            type="com.example.icogn.mshb.shb.main.my.MyFragment" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical">
+
+
+        <!-- TODO: Update blank fragment layout -->
+
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:fitsSystemWindows="true"
+            android:scrollY="@{data.listener}">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_150dp"
+                    android:background="@color/text_background">
+
+                    <TextView
+                        android:id="@+id/tv_my_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:onClick="@{module.manage}"
+                        android:layout_toRightOf="@+id/iv_my_icon"
+                        android:text="@{data.name}"
+                        android:textColor="@color/halving_line"
+                        android:textSize="@dimen/dimen_18sp" />
+
+                    <TextView
+                        android:id="@+id/tv_my_manage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_below="@id/tv_my_name"
+                        android:layout_marginRight="@dimen/dimen_10dp"
+                        android:drawableRight="@drawable/right_white"
+                        android:gravity="center"
+                        android:onClick="@{module.manage}"
+                        android:text="账户管理"
+                        android:textColor="@color/halving_line" />
+
+                    <ImageView
+                        android:id="@+id/iv_my_icon"
+                        android:layout_width="@dimen/dimen_80dp"
+                        android:layout_height="@dimen/dimen_80dp"
+                        android:onClick="@{module.manage}"
+                        android:layout_alignTop="@+id/tv_my_name"
+                        android:layout_marginLeft="@dimen/dimen_30dp"
+                        android:layout_marginRight="@dimen/dimen_10dp"
+                        android:src="@drawable/user_icon"
+                        app:circle="@{data.icon}" />
+                </RelativeLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_1dp"
+                    android:background="@color/halving_line" />
+
+                <!--<LinearLayout-->
+                <!--android:id="@+id/ll_my_order_all"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:padding="@dimen/dimen_5dp"-->
+                <!--android:visibility="gone">-->
+
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="@dimen/dimen_10dp"-->
+                <!--android:text="@string/my_order" />-->
+
+                <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginRight="@dimen/dimen_10dp"-->
+                <!--android:drawableRight="@mipmap/right"-->
+                <!--android:gravity="center_vertical|right"-->
+                <!--android:text="@string/my_order_all"-->
+                <!--android:textColor="@color/gray" />-->
+                <!--</LinearLayout>-->
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_my_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_10dp"
+                    android:background="@color/halving_line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_80dp"
+                    android:background="@color/white">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="@{module.integral}"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{data.integral}"
+                            android:textColor="@color/text_background"
+                            android:textSize="@dimen/dimen_18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_10dp"
+                            android:text="@string/integral" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="@dimen/dimen_1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/halving_line" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:onClick="@{module.coupon}"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{data.coupon}"
+                            android:textColor="@color/text_background"
+                            android:textSize="@dimen/dimen_18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_10dp"
+                            android:text="@string/my_coupon" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="@dimen/dimen_1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/halving_line" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:onClick="@{module.collect}"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{data.collect}"
+                            android:textColor="@color/text_background"
+                            android:textSize="@dimen/dimen_18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_10dp"
+                            android:text="@string/my_favorite" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="@dimen/dimen_1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/halving_line" />
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:onClick="@{module.spoor}"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{data.spoor}"
+                            android:textColor="@color/text_background"
+                            android:textSize="@dimen/dimen_18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_10dp"
+                            android:text="@string/my_spoor" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="@dimen/dimen_10dp"
+                        android:layout_weight="1"
+                        android:background="@color/gray" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@color/background"
+                        android:drawableLeft="@drawable/recommend"
+                        android:gravity="center"
+                        android:padding="@dimen/dimen_5dp"
+                        android:text="@string/recommend" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="@dimen/dimen_10dp"
+                        android:layout_weight="1"
+                        android:background="@color/gray" />
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_my_often_bay"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/background" />
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="@{data.alpha}"
+                android:background="@color/text_background" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:padding="@dimen/dimen_5dp"
+                android:src="@drawable/user_icon"
+                android:visibility="@{data.alpha>0.9?View.VISIBLE:View.GONE}"
+                app:circle="@{data.icon}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:gravity="bottom"
+                android:padding="@dimen/dimen_10dp"
+                android:text="@string/my"
+                android:textColor="@color/white"
+                android:visibility="@{data.alpha>0.9?View.VISIBLE:View.GONE}" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_5dp"
+                android:onClick="@{module.setting}"
+                android:layout_toLeftOf="@+id/iv_message"
+                android:padding="@dimen/dimen_10dp"
+                android:src="@drawable/setting" />
+
+            <ImageView
+                android:id="@+id/iv_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="@dimen/dimen_5dp"
+                android:onClick="@{module.message}"
+                android:padding="@dimen/dimen_10dp"
+                android:src="@drawable/message_normal" />
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>

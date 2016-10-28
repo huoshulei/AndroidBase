@@ -1,0 +1,93 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="module"
+            type="com.example.icogn.mshb.shb.main.classify.ClassifyFragment" />
+        <import type="android.view.View"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- TODO: Update blank fragment layout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:visibility="@{module.main?View.VISIBLE:View.GONE}"
+            android:layout_height="@dimen/dimen_50dp">
+
+            <ImageView
+                android:onClick="@{module.scan}"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dimen_5dp"
+                android:padding="@dimen/dimen_5dp"
+                android:src="@drawable/scan_selected" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:onClick="@{module.seek}"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_marginRight="@dimen/dimen_10dp"
+                android:background="@drawable/text_seek"
+                android:drawableLeft="@drawable/seek_selected"
+                android:hint="生活邦"
+                android:padding="@dimen/dimen_10dp"
+                android:textColorHint="@color/gray" />
+
+            <ImageView
+                android:onClick="@{module.message}"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/dimen_5dp"
+                android:padding="@dimen/dimen_5dp"
+                android:src="@drawable/message_selected" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dimen_10dp"
+            android:text="@string/classify"
+            android:textColor="@color/gray_shen" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_classify_tab"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dimen_5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dimen_10dp"
+                    android:text="类目" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_classify_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/halving_line" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

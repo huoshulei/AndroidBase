@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.icogn.mshb.shb.main.home.rob.fragment.RobTabBean" />
+
+        <variable
+            name="module"
+            type="com.example.icogn.mshb.shb.main.home.rob.fragment.RobFragment" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="@dimen/dimen_80dp"
+        android:layout_height="@dimen/dimen_60dp"
+        android:onClick="@{()->module.robTabListener(data)}">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50dp"
+            android:background="@color/rob_background" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/fengqiang_background"
+            android:visibility="@{data.current?View.VISIBLE:View.GONE}" />
+
+        <LinearLayout
+            android:layout_width="@dimen/dimen_80dp"
+            android:layout_height="@dimen/dimen_50dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@{data.date}"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="@{data.state}"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

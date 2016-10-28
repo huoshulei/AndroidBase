@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dimen_5dp"
+    android:background="@color/white"
+    android:padding="@dimen/dimen_5dp">
+
+    <LinearLayout
+        android:id="@+id/ll_order_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_50dp">
+
+            <CheckBox
+                android:id="@+id/cb_order_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:button="@drawable/checkbox_selector"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_order_item_shop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:layout_toRightOf="@id/cb_order_item"
+                android:drawableLeft="@mipmap/index_06"
+                android:drawablePadding="@dimen/dimen_10dp"
+                android:drawableRight="@mipmap/right"
+                android:gravity="center"
+                android:text="美居客旗舰店" />
+
+            <TextView
+                android:id="@+id/tv_order_item_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="关闭交易" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1dp"
+            android:background="@color/background" />
+
+        <RelativeLayout
+            android:id="@+id/rl_commodity_item"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_100dp"
+            android:paddingLeft="@dimen/dimen_20dp"
+            android:paddingTop="@dimen/dimen_10dp">
+
+            <ImageView
+                android:id="@+id/iv_order_item_icon"
+                android:layout_width="@dimen/dimen_80dp"
+                android:layout_height="@dimen/dimen_80dp"
+                android:src="@mipmap/index_06" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/iv_order_item_icon"
+                android:orientation="vertical"
+                android:paddingRight="@dimen/dimen_10dp">
+
+                <TextView
+                    android:id="@+id/tv_order_item_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="2"
+                    android:text="的粉红色的后背固定发射速度" />
+
+                <TextView
+                    android:id="@+id/tv_order_item_sales"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_5dp"
+                    android:text="啊的方式度过120" />
+
+                <TextView
+                    android:id="@+id/tv_order_item_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_5dp"
+                    android:text="￥125" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1dp"
+            android:background="@color/background" />
+
+        <TextView
+            android:id="@+id/tv_order_item_total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right|center"
+            android:padding="@dimen/dimen_10dp"
+            android:text="共1件商品 合计：￥75.00（含运费0.00）" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1dp"
+            android:background="@color/background" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_order_item_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/ll_order_item"
+        android:layout_gravity="right" />
+</RelativeLayout>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.icogn.mshb.register.RegisterBean" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <!-- TODO: Update blank fragment layout -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background"
+            android:padding="@dimen/dimen_16dp"
+            android:text="@{@string/phone+data.phone}" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:hint="输入昵称"
+            android:lines="1"
+            android:inputType="text"
+            android:padding="@dimen/dimen_16dp"
+            android:text="@={data.name}"
+            android:textSize="@dimen/dimen_14sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1dp"
+            android:layout_marginLeft="@dimen/dimen_16dp"
+            android:layout_marginRight="@dimen/dimen_16dp"
+            android:background="@color/background" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:enabled="@{!data.progress}"
+            android:hint="输入密码至少6位密码，包括数字和字母"
+            android:inputType="textPassword"
+            android:lines="1"
+            android:padding="@dimen/dimen_16dp"
+            android:text="@={data.password}"
+            android:textSize="@dimen/dimen_14sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1dp"
+            android:layout_marginLeft="@dimen/dimen_16dp"
+            android:layout_marginRight="@dimen/dimen_16dp"
+            android:background="@color/background" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:lines="1"
+            android:enabled="@{!data.progress}"
+            android:hint="重新输入密码"
+            android:inputType="textPassword"
+            android:padding="@dimen/dimen_16dp"
+            android:text="@={data.repeatPWD}"
+            android:textSize="@dimen/dimen_14sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1dp"
+            android:layout_marginLeft="@dimen/dimen_16dp"
+            android:layout_marginRight="@dimen/dimen_16dp"
+            android:background="@color/background" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_16dp"
+            android:layout_marginRight="@dimen/dimen_16dp"
+            android:layout_marginTop="@dimen/dimen_80dp"
+            android:background="@drawable/text_background"
+            android:enabled="@{!data.progress}"
+            android:gravity="center"
+            android:onClick="register"
+            android:padding="@dimen/dimen_8dp"
+            android:text="@{data.progress?@string/registering:@string/register}"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+    </LinearLayout>
+</layout>

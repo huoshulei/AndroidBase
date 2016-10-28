@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <fragment
+        android:id="@+id/fm_classify"
+        android:name="com.example.icogn.mshb.shb.main.classify.ClassifyFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="9" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/gray"
+        android:gravity="center"
+        android:onClick="finish"
+        android:padding="@dimen/dimen_5dp"
+        android:text="点\n击\n此\n处\n返\n回"
+        android:textColor="@color/white" />
+
+</LinearLayout>
