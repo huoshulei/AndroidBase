@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 
 import com.example.icogn.mshb.adapter.connector.OnLoadMore;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,11 +23,11 @@ import java.util.List;
  * 版本:
  */
 
-public abstract class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder> {
-    private int                 layoutId; //布局文件id
+public abstract class BaseAdapterT<T> extends RecyclerView.Adapter<BaseViewHolder> {
+    private int                    layoutId; //布局文件id
     //    private List mData;
-    private ObservableArrayList mData;
-    private Object              viewModule;
+    private ObservableArrayList<T> mData;
+    private Object                 viewModule;
     private final int     LOAD_VIEW = 1;
     private       boolean loading   = false;//是否开启加载更多功能
     private View       loadView; //加载更多布局
@@ -44,7 +43,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private static final int FOOTER  = 3;
     private static final int EMPTY   = 4;
 
-    public BaseAdapter(@LayoutRes int layoutId, @NonNull Object viewModule) {
+    public BaseAdapterT(@LayoutRes int layoutId, @NonNull Object viewModule) {
         if (layoutId == 0) throw new NullPointerException("布局文件不能为空");
         this.layoutId = layoutId;
         this.viewModule = viewModule;
@@ -113,9 +112,9 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder> {
      * @param holder     viewHolder
      * @param t          data
      * @param viewModule module
-     * @param <T>        绑定数据到布局文件
+     *                   绑定数据到布局文件
      */
-    protected abstract <T> void convert(BaseViewHolder holder, T t, Object viewModule);
+    protected abstract void convert(BaseViewHolder holder, T t, Object viewModule);
 
 
     @Override
@@ -176,10 +175,9 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     /**
      * @param data 添加数据
-     * @param <T>
      */
-    public <T> void setData(List<T> data) {
-        if (mData == null) mData = new ObservableArrayList<T>();
+    public void setData(List<T> data) {
+        if (mData == null) mData = new ObservableArrayList<>();
         mLoadingMoreEnable = true;
         showLoadView();
         mData.clear();
@@ -189,10 +187,9 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     /**
      * @param data 添加数据
-     * @param <T>
      */
-    public <T> void addData(List<T> data) {
-        if (mData == null) mData = new ObservableArrayList<T>();
+    public void addData(List<T> data) {
+        if (mData == null) mData = new ObservableArrayList<>();
         mLoadingMoreEnable = true;
         mData.addAll(data);
         notifyDataSetChanged();
@@ -200,10 +197,9 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     /**
      * @param data 添加数据
-     * @param <T>
      */
-    public <T> void addData(T data) {
-        if (mData == null) mData = new ObservableArrayList<T>();
+    public void addData(T data) {
+        if (mData == null) mData = new ObservableArrayList<>();
         mLoadingMoreEnable = true;
         mData.add(data);
         notifyDataSetChanged();
@@ -211,9 +207,8 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     /**
      * @param data 添加数据
-     * @param <T>
      */
-    public <T> void addData(List<T> data, int position) {
+    public void addData(List<T> data, int position) {
         mLoadingMoreEnable = true;
         mData.addAll(data);
         notifyDataSetChanged();
@@ -221,9 +216,8 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     /**
      * @param data 添加数据
-     * @param <T>
      */
-    public <T> void addData(T data, int position) {
+    public void addData(T data, int position) {
         mLoadingMoreEnable = true;
         mData.add(position, data);
         notifyDataSetChanged();
@@ -248,9 +242,8 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     /**
      * @param data 删除指定数据
-     * @param <T>
      */
-    public <T> void remove(T data) {
+    public void remove(T data) {
         if (mData != null) mData.remove(data);
         notifyDataSetChanged();
     }
