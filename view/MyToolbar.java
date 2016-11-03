@@ -49,6 +49,10 @@ public class MyToolbar extends Toolbar {
         } else setTitle("");
     }
 
+    public void setTitleText(CharSequence title) {
+        setTitle(title);
+    }
+
     @Override
     public void setTitle(CharSequence title) {
         super.setTitle("");
