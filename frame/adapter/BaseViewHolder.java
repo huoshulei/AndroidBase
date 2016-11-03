@@ -1,4 +1,4 @@
-package com.example.icogn.mshb.adapter;
+package com.example.icogn.mshb.frame.adapter;
 
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
@@ -23,6 +23,7 @@ import com.example.icogn.mshb.R;
 
 class BaseViewHolder extends RecyclerView.ViewHolder {
     private final ViewDataBinding binding;
+    private       RecyclerView    recyclerView;
 
     private BaseViewHolder(View loadView) {
         super(loadView);
@@ -32,6 +33,34 @@ class BaseViewHolder extends RecyclerView.ViewHolder {
     private BaseViewHolder(ViewDataBinding binding) {
         super(binding.getRoot());
         this.binding = binding;
+    }
+
+    public RecyclerView getRecyclerView() {
+        return recyclerView;
+    }
+
+    public BaseViewHolder setRecyclerView(RecyclerView recyclerView) {
+        this.recyclerView = recyclerView;
+        this.recyclerView.setHasFixedSize(true);
+        return this;
+    }
+
+    public BaseViewHolder setLayoutManger(RecyclerView.LayoutManager layoutManger) {
+        if (recyclerView == null) return this;
+        recyclerView.setLayoutManager(layoutManger);
+        return this;
+    }
+
+    public BaseViewHolder setAdapter(BaseAdapter adapter) {
+        if (recyclerView == null) return this;
+        recyclerView.setAdapter(adapter);
+        return this;
+    }
+
+    public BaseViewHolder setAdapter(BaseAdapterT adapter) {
+        if (recyclerView == null) return this;
+        recyclerView.setAdapter(adapter);
+        return this;
     }
 
     /**

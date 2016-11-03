@@ -26,7 +26,7 @@ import java.util.List;
  */
 
 public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
-    private   int    layoutId;
+    private int    layoutId;
     private List   mData;
     private Object view;
     private final int     LOAD_VIEW = 1;
@@ -154,6 +154,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
         notifyDataSetChanged();
     }
 
+    public <T> void remove(T data) {
+        if (mData != null) mData.remove(data);
+        notifyDataSetChanged();
+    }
+
     public List getData() {
         return mData;
     }
@@ -164,7 +169,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
     }
 
     private Holder onCreateLoadView(ViewGroup parent) {
-        return new Holder((LayoutInflater.from(parent.getContext()).inflate(R.layout.loading_view, parent,false)));
+        return new Holder((LayoutInflater.from(parent.getContext()).inflate(R.layout.loading_view, parent, false)));
     }
 
     @Override
@@ -210,4 +215,4 @@ public class Adapter extends RecyclerView.Adapter<Adapter.Holder> {
             return this;
         }
     }
-    }
+}

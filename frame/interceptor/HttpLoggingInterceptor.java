@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.icogn.mshb.utils.interceptor;
+package com.example.icogn.mshb.frame.interceptor;
 
 
-import com.example.icogn.mshb.utils.logger.Logger;
+import com.example.icogn.mshb.frame.logger.Logger;
 
 import java.io.EOFException;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.example.icogn.mshb.adapter;
+package com.example.icogn.mshb.frame.adapter;
 
 import android.content.Context;
 import android.databinding.ObservableArrayList;
@@ -8,7 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.icogn.mshb.adapter.connector.OnLoadMore;
+import com.example.icogn.mshb.frame.adapter.connector.OnLoadMore;
+import com.example.icogn.mshb.frame.viewModule.BaseViewModule;
 
 import java.util.List;
 
@@ -23,11 +24,11 @@ import java.util.List;
  * 版本:
  */
 
-public abstract class BaseAdapterT<T> extends RecyclerView.Adapter<BaseViewHolder> {
-    private int                    layoutId; //布局文件id
+public abstract class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder> {
+    private int                 layoutId; //布局文件id
     //    private List mData;
-    private ObservableArrayList<T> mData;
-    private Object                 viewModule;
+    private ObservableArrayList mData;
+    private BaseViewModule      viewModule;
     private final int     LOAD_VIEW = 1;
     private       boolean loading   = false;//是否开启加载更多功能
     private View       loadView; //加载更多布局
@@ -43,7 +44,7 @@ public abstract class BaseAdapterT<T> extends RecyclerView.Adapter<BaseViewHolde
     private static final int FOOTER  = 3;
     private static final int EMPTY   = 4;
 
-    public BaseAdapterT(@LayoutRes int layoutId, @NonNull Object viewModule) {
+    public BaseAdapter(@LayoutRes int layoutId, @NonNull BaseViewModule viewModule) {
         if (layoutId == 0) throw new NullPointerException("布局文件不能为空");
         this.layoutId = layoutId;
         this.viewModule = viewModule;
@@ -112,9 +113,9 @@ public abstract class BaseAdapterT<T> extends RecyclerView.Adapter<BaseViewHolde
      * @param holder     viewHolder
      * @param t          data
      * @param viewModule module
-     *                   绑定数据到布局文件
+     * @param <T>        绑定数据到布局文件
      */
-    protected abstract void convert(BaseViewHolder holder, T t, Object viewModule);
+    protected abstract <T> void convert(BaseViewHolder holder, T t, Object viewModule);
 
 
     @Override
@@ -175,9 +176,10 @@ public abstract class BaseAdapterT<T> extends RecyclerView.Adapter<BaseViewHolde
 
     /**
      * @param data 添加数据
+     * @param <T>
      */
-    public void setData(List<T> data) {
-        if (mData == null) mData = new ObservableArrayList<>();
+    public <T> void setData(List<T> data) {
+        if (mData == null) mData = new ObservableArrayList<T>();
         mLoadingMoreEnable = true;
         showLoadView();
         mData.clear();
@@ -187,9 +189,10 @@ public abstract class BaseAdapterT<T> extends RecyclerView.Adapter<BaseViewHolde
 
     /**
      * @param data 添加数据
+     * @param <T>
      */
-    public void addData(List<T> data) {
-        if (mData == null) mData = new ObservableArrayList<>();
+    public <T> void addData(List<T> data) {
+        if (mData == null) mData = new ObservableArrayList<T>();
         mLoadingMoreEnable = true;
         mData.addAll(data);
         notifyDataSetChanged();
@@ -197,9 +200,10 @@ public abstract class BaseAdapterT<T> extends RecyclerView.Adapter<BaseViewHolde
 
     /**
      * @param data 添加数据
+     * @param <T>
      */
-    public void addData(T data) {
-        if (mData == null) mData = new ObservableArrayList<>();
+    public <T> void addData(T data) {
+        if (mData == null) mData = new ObservableArrayList<T>();
         mLoadingMoreEnable = true;
         mData.add(data);
         notifyDataSetChanged();
@@ -207,8 +211,9 @@ public abstract class BaseAdapterT<T> extends RecyclerView.Adapter<BaseViewHolde
 
     /**
      * @param data 添加数据
+     * @param <T>
      */
-    public void addData(List<T> data, int position) {
+    public <T> void addData(List<T> data, int position) {
         mLoadingMoreEnable = true;
         mData.addAll(data);
         notifyDataSetChanged();
@@ -216,8 +221,9 @@ public abstract class BaseAdapterT<T> extends RecyclerView.Adapter<BaseViewHolde
 
     /**
      * @param data 添加数据
+     * @param <T>
      */
-    public void addData(T data, int position) {
+    public <T> void addData(T data, int position) {
         mLoadingMoreEnable = true;
         mData.add(position, data);
         notifyDataSetChanged();
@@ -242,8 +248,9 @@ public abstract class BaseAdapterT<T> extends RecyclerView.Adapter<BaseViewHolde
 
     /**
      * @param data 删除指定数据
+     * @param <T>
      */
-    public void remove(T data) {
+    public <T> void remove(T data) {
         if (mData != null) mData.remove(data);
         notifyDataSetChanged();
     }

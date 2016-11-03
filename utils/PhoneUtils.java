@@ -135,7 +135,7 @@ public class PhoneUtils {
      * @param content     内容
      */
     public static void sendSms(Context context, String phoneNumber, String content) {
-        Uri uri = Uri.parse("smsto:" + (StringUtils.isEmpty(phoneNumber) ? "" : phoneNumber));
+        Uri    uri    = Uri.parse("smsto:" + (StringUtils.isEmpty(phoneNumber) ? "" : phoneNumber));
         Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
         intent.putExtra("sms_body", StringUtils.isEmpty(content) ? "" : content);
         context.startActivity(intent);
@@ -158,7 +158,7 @@ public class PhoneUtils {
         // raw_contacts表的地址 :raw_contacts
         // view_data表的地址 : data
         // 3.生成查询地址
-        Uri raw_uri = Uri.parse("content://com.android.contacts/raw_contacts");
+        Uri raw_uri  = Uri.parse("content://com.android.contacts/raw_contacts");
         Uri date_uri = Uri.parse("content://com.android.contacts/data");
         // 4.查询操作,先查询raw_contacts,查询contact_id
         // projection : 查询的字段
@@ -184,7 +184,7 @@ public class PhoneUtils {
                 // 8.解析c
                 while (c.moveToNext()) {
                     // 9.获取数据
-                    String data1 = c.getString(0);
+                    String data1    = c.getString(0);
                     String mimetype = c.getString(1);
                     // 10.根据类型去判断获取的data1数据并保存
                     if (mimetype.equals("vnd.android.cursor.item/phone_v2")) {
@@ -259,7 +259,7 @@ public class PhoneUtils {
         // sortOrder : 排序
         Cursor cursor = resolver.query(uri, new String[]{"address", "date", "type", "body"}, null, null, null);
         // 设置最大进度
-        int count = cursor.getCount();//获取短信的个数
+        int count = cursor != null ? cursor.getCount() : 0;//获取短信的个数
         // 2.备份短信
         // 2.1获取xml序列器
         XmlSerializer xmlSerializer = Xml.newSerializer();

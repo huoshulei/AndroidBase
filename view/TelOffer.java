@@ -37,7 +37,7 @@ public class TelOffer extends LinearLayout implements View.OnClickListener {
 
     public TelOffer(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        View.inflate(context, R.layout.layout_tel_offer, this);
+        View.inflate(context, R.layout.offer, this);
         findViewById(R.id.tv_offer_tel).setOnClickListener(this);
         findViewById(R.id.tv_offer_idea).setOnClickListener(this);
         findViewById(R.id.tv_offer_home).setOnClickListener(this);

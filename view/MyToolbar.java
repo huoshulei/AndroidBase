@@ -41,7 +41,7 @@ public class MyToolbar extends Toolbar {
     public MyToolbar(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.MyToolbar, defStyleAttr, 0);
-        mTitleTextColor = a.getColor(R.styleable.MyToolbar_titleColor, Color.BLACK);
+        mTitleTextColor = a.getColor(R.styleable.MyToolbar_titleTextColor, Color.BLACK);
         mTitleTextSize = a.getDimensionPixelSize(R.styleable.MyToolbar_titleTextSize, 20);
         CharSequence title = a.getText(R.styleable.MyToolbar_titleText);
         if (!TextUtils.isEmpty(title)) {
