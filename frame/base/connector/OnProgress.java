@@ -1,4 +1,4 @@
-package com.example.icogn.mshb.frame.connector;
+package com.example.icogn.mshb.frame.base.connector;
 
 /**
  * 项目名称:  MSHB

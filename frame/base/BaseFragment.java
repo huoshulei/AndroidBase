@@ -12,9 +12,9 @@ import android.view.ViewGroup;
 
 import com.android.databinding.library.baseAdapters.BR;
 import com.example.icogn.mshb.frame.component.AppComponent;
-import com.example.icogn.mshb.frame.connector.OnProgress;
+import com.example.icogn.mshb.frame.base.connector.OnProgress;
 import com.example.icogn.mshb.frame.utils.App;
-import com.example.icogn.mshb.frame.viewModule.BaseViewModule;
+import com.example.icogn.mshb.frame.base.viewModule.BaseViewModule;
 
 import javax.inject.Inject;
 

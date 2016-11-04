@@ -16,7 +16,7 @@
  * This software contains code derived from the following Android classes:
  * android.util.Log, android.text.TextUtils.
  */
-package com.example.icogn.mshb.frame.logger;
+package com.example.icogn.mshb.frame.utils.logger;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

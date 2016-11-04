@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.icogn.mshb.frame.adapter.connector.OnLoadMore;
-import com.example.icogn.mshb.frame.viewModule.BaseViewModule;
+import com.example.icogn.mshb.frame.base.viewModule.BaseViewModule;
 
 import java.util.List;
 

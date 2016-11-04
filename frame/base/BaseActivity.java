@@ -8,15 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.android.databinding.library.baseAdapters.BR;
 import com.example.icogn.mshb.frame.component.AppComponent;
-import com.example.icogn.mshb.frame.connector.OnProgress;
+import com.example.icogn.mshb.frame.base.connector.OnProgress;
 import com.example.icogn.mshb.frame.utils.App;
-import com.example.icogn.mshb.frame.viewModule.BaseViewModule;
+import com.example.icogn.mshb.frame.base.viewModule.BaseViewModule;
 
 import javax.inject.Inject;
 
 public abstract class BaseActivity extends AppCompatActivity implements OnProgress {
     @Inject
-    private BaseViewModule  viewModule;
+     BaseViewModule  viewModule;
     private ViewDataBinding binding;
 
     @Override

@@ -1,10 +1,10 @@
-package com.example.icogn.mshb.frame.viewModule;
+package com.example.icogn.mshb.frame.base.viewModule;
 
 import android.databinding.Bindable;
 import android.databinding.Observable;
 import android.databinding.PropertyChangeRegistry;
 
-import com.example.icogn.mshb.frame.connector.OnProgress;
+import com.example.icogn.mshb.frame.base.connector.OnProgress;
 import com.example.icogn.mshb.frame.http.Api;
 import com.example.icogn.mshb.frame.http.Http;
 import com.example.icogn.mshb.frame.http.HttpResult;

@@ -1,4 +1,4 @@
-package com.example.icogn.mshb.frame.logger;
+package com.example.icogn.mshb.frame.utils.logger;
 
 public interface LogAdapter {
   void d(String tag, String message);

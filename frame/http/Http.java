@@ -4,8 +4,8 @@ package com.example.icogn.mshb.frame.http;
 import com.example.icogn.mshb.BuildConfig;
 import com.example.icogn.mshb.entity.User;
 import com.example.icogn.mshb.frame.exception.ApiException;
-import com.example.icogn.mshb.frame.interceptor.HttpLoggingInterceptor;
-import com.example.icogn.mshb.frame.interceptor.HttpLoggingInterceptor.Level;
+import com.example.icogn.mshb.frame.http.interceptor.HttpLoggingInterceptor;
+import com.example.icogn.mshb.frame.http.interceptor.HttpLoggingInterceptor.Level;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.io.IOException;

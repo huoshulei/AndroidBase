@@ -3,7 +3,7 @@ package com.example.icogn.mshb.frame.utils;
 import android.widget.Toast;
 
 import com.example.icogn.mshb.frame.MyApplication;
-import com.example.icogn.mshb.frame.logger.Logger;
+import com.example.icogn.mshb.frame.utils.logger.Logger;
 
 
 /**

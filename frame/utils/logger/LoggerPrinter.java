@@ -1,4 +1,4 @@
-package com.example.icogn.mshb.frame.logger;
+package com.example.icogn.mshb.frame.utils.logger;
 
 import org.json.JSONArray;
 import org.json.JSONException;
