@@ -9,6 +9,8 @@ import com.example.icogn.mshb.frame.http.Api;
 import com.example.icogn.mshb.frame.http.Http;
 import com.example.icogn.mshb.frame.http.HttpResult;
 
+import javax.inject.Inject;
+
 import io.reactivex.Flowable;
 import io.reactivex.functions.Consumer;
 
@@ -29,8 +31,9 @@ public class BaseViewModule implements Observable {
     protected         Api                    api;
     private           OnProgress             progress;
 
-    public BaseViewModule(OnProgress progress) {
-        api = Http.HTTP.api;
+    @Inject
+    public BaseViewModule(OnProgress progress, Api api) {
+        this.api = api;
         this.progress = progress;
     }
 
