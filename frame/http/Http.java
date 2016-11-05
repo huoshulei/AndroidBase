@@ -86,22 +86,6 @@ public enum Http {
     }
 
     /**
-     * 封装网络方法调用
-     *
-     * @param observable 观察者
-     * @param onNext     订阅者
-     * @param <T>        data类型
-     */
-    public <T> void http(Flowable<HttpResult<T>> observable, Consumer<T> onNext,
-                         Consumer<Throwable> onError, Action onComplete) {
-        observable.map(this::apply)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .unsubscribeOn(Schedulers.io())
-                .subscribe(onNext, onError, onComplete, s -> s.request(Long.MAX_VALUE));
-    }
-
-    /**
      * @param token
      * @return 刷新Token
      * @throws IOException
@@ -110,9 +94,4 @@ public enum Http {
         return api.refreshToken(token).execute().body();
     }
 
-    private <T> T apply(HttpResult<T> result) {
-        if (result.getResultCode() != 200) throw new ApiException(result.getState());
-        if (result.getData() == null) return (T) new Object();
-        return result.getData();
-    }
 }

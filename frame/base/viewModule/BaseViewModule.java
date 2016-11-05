@@ -5,6 +5,7 @@ import android.databinding.Observable;
 import android.databinding.PropertyChangeRegistry;
 
 import com.example.icogn.mshb.frame.base.connector.OnProgress;
+import com.example.icogn.mshb.frame.exception.ApiException;
 import com.example.icogn.mshb.frame.http.Api;
 import com.example.icogn.mshb.frame.http.Http;
 import com.example.icogn.mshb.frame.http.HttpResult;
@@ -12,7 +13,10 @@ import com.example.icogn.mshb.frame.http.HttpResult;
 import javax.inject.Inject;
 
 import io.reactivex.Flowable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 
 /**
@@ -39,7 +43,7 @@ public class BaseViewModule implements Observable {
 
     protected final <T> void http(Flowable<HttpResult<T>> f, Consumer<T> onNext) {
         showProgress();
-        Http.HTTP.http(f, onNext, e -> onError(e.getMessage()), this::onComplete);
+        http(f, onNext, e -> onError(e.getMessage()), this::onComplete);
     }
 
     private void onComplete() {
@@ -101,5 +105,27 @@ public class BaseViewModule implements Observable {
         if (mCallbacks != null) {
             mCallbacks.notifyCallbacks(this, fieldId, null);
         }
+    }
+
+    /**
+     * 封装网络方法调用
+     *
+     * @param observable 观察者
+     * @param onNext     订阅者
+     * @param <T>        data类型
+     */
+    public final <T> void http(Flowable<HttpResult<T>> observable, Consumer<T> onNext,
+                               Consumer<Throwable> onError, Action onComplete) {
+        observable.map(this::apply)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .unsubscribeOn(Schedulers.io())
+                .subscribe(onNext, onError, onComplete, s -> s.request(Long.MAX_VALUE));
+    }
+
+    private <T> T apply(HttpResult<T> result) {
+        if (result.getResultCode() != 200) throw new ApiException(result.getState());
+        if (result.getData() == null) return (T) new Object();
+        return result.getData();
     }
 }
