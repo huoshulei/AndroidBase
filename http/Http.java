@@ -1,4 +1,4 @@
-package com.example.icogn.mshb.http;
+﻿package com.example.icogn.mshb.http;
 
 
 import com.example.icogn.mshb.BuildConfig;
@@ -39,10 +39,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public enum Http {
     HTTP;
-    //    private final String BASE_URL = "http://192.168.1.88:8084/icogn/";
-    //    private final String BASE_URL = "http://192.168.1.29:8084/icogn/";
-    //        private final String BASE_URL = "http://icogns.oicp.net:11465/icogn/";
-    private final String BASE_URL = "http://101.200.126.206/";
+   
+    private final String BASE_URL = "";
     public final Api api;
 
     Http() {

@@ -14,10 +14,27 @@ import com.example.icogn.mshb.frame.base.viewModule.BaseViewModule;
 
 import javax.inject.Inject;
 
+import io.reactivex.disposables.Disposable;
+import io.reactivex.internal.disposables.ListCompositeDisposable;
+
 public abstract class BaseActivity extends AppCompatActivity implements OnProgress {
     @Inject
-     BaseViewModule  viewModule;
+    BaseViewModule viewModule;
     private ViewDataBinding binding;
+    private ListCompositeDisposable disposable = new ListCompositeDisposable();
+
+    protected void addDisposable(Disposable disposable) {
+        if (disposable != null && !disposable.isDisposed())
+            this.disposable.add(disposable);
+    }
+
+    protected void remove(Disposable disposable) {
+        if (disposable != null) this.disposable.remove(disposable);
+    }
+
+    protected void clear() {
+        if (!disposable.isDisposed()) disposable.clear();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,5 +111,11 @@ public abstract class BaseActivity extends AppCompatActivity implements OnProgre
 
     public ViewDataBinding getBinding() {
         return binding;
+    }
+
+    @Override
+    protected void onDestroy() {
+        clear();
+        super.onDestroy();
     }
 }
