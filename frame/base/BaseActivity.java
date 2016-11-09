@@ -18,21 +18,23 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.internal.disposables.ListCompositeDisposable;
 
 public abstract class BaseActivity extends AppCompatActivity implements OnProgress {
-    @Inject
-    BaseViewModule viewModule;
+
     private ViewDataBinding binding;
     private ListCompositeDisposable disposable = new ListCompositeDisposable();
 
-    protected void addDisposable(Disposable disposable) {
+    @Override
+    public void addDisposable(Disposable disposable) {
         if (disposable != null && !disposable.isDisposed())
             this.disposable.add(disposable);
     }
 
-    protected void remove(Disposable disposable) {
+    @Override
+    public void remove(Disposable disposable) {
         if (disposable != null) this.disposable.remove(disposable);
     }
 
-    protected void clear() {
+    @Override
+    public void clear() {
         if (!disposable.isDisposed()) disposable.clear();
     }
 
@@ -105,9 +107,6 @@ public abstract class BaseActivity extends AppCompatActivity implements OnProgre
 
     }
 
-    public BaseViewModule getViewModule() {
-        return viewModule;
-    }
 
     public ViewDataBinding getBinding() {
         return binding;
@@ -118,4 +117,5 @@ public abstract class BaseActivity extends AppCompatActivity implements OnProgre
         clear();
         super.onDestroy();
     }
+
 }

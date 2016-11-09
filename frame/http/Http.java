@@ -24,12 +24,12 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * 项目名称: MSHB
+ * 项目名称:
  * 类描述:
- * 创建人:   ICOGN
- * 创建时间: 2016/9/9 18:04
- * 修改人:   ICOGN
- * 修改时间: ${DATE}
+ * 创建人:
+ * 创建时间:
+ * 修改人:
+ * 修改时间:
  * 备注:
  * 版本:
  */

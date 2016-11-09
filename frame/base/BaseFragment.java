@@ -18,15 +18,33 @@ import com.example.icogn.mshb.frame.base.viewModule.BaseViewModule;
 
 import javax.inject.Inject;
 
+import io.reactivex.disposables.Disposable;
+import io.reactivex.internal.disposables.ListCompositeDisposable;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public abstract class BaseFragment extends Fragment implements OnProgress {
-    private   View            view;
-    @Inject
-    protected BaseViewModule  viewModule;
-    private   ViewDataBinding binding;
+    private View            view;
+    private ViewDataBinding binding;
+    private ListCompositeDisposable disposable = new ListCompositeDisposable();
+
+    @Override
+    public void addDisposable(Disposable disposable) {
+        if (disposable != null && !disposable.isDisposed())
+            this.disposable.add(disposable);
+    }
+
+    @Override
+    public void remove(Disposable disposable) {
+        if (disposable != null) this.disposable.remove(disposable);
+    }
+
+    @Override
+    public void clear() {
+        if (!disposable.isDisposed()) disposable.clear();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -114,9 +132,6 @@ public abstract class BaseFragment extends Fragment implements OnProgress {
 
     }
 
-    public BaseViewModule getViewModule() {
-        return viewModule;
-    }
 
     public ViewDataBinding getBinding() {
         return binding;

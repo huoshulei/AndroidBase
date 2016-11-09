@@ -42,8 +42,11 @@ public class BaseViewModule implements Observable {
     }
 
     protected final <T> void http(Flowable<HttpResult<T>> f, Consumer<T> onNext) {
-        showProgress();
-        http(f, onNext, e -> onError(e.getMessage()), this::onComplete);
+        http(f, onNext, e -> onError(e.getMessage()));
+    }
+
+    protected final <T> void http(Flowable<HttpResult<T>> f, Consumer<T> onNext, Consumer<Throwable> e) {
+        http(f, onNext, e, this::onComplete);
     }
 
     private void onComplete() {
@@ -116,11 +119,12 @@ public class BaseViewModule implements Observable {
      */
     public final <T> void http(Flowable<HttpResult<T>> observable, Consumer<T> onNext,
                                Consumer<Throwable> onError, Action onComplete) {
-        observable.map(this::apply)
+        showProgress();
+        progress.addDisposable(observable.map(this::apply)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io())
-                .subscribe(onNext, onError, onComplete, s -> s.request(Long.MAX_VALUE));
+                .subscribe(onNext, onError, onComplete, s -> s.request(Long.MAX_VALUE)));
     }
 
     private <T> T apply(HttpResult<T> result) {

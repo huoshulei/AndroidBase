@@ -6,12 +6,12 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 /**
- * 项目名称:  MSHB
+ * 项目名称:
  * 类描述:
- * 创建人:    ICOGN
- * 创建时间:  2016/10/21 13:18
- * 修改人:    ICOGN
- * 修改时间:  2016/10/21 13:18
+ * 创建人:
+ * 创建时间:
+ * 修改人:
+ * 修改时间:
  * 备注:
  * 版本:
  */
@@ -25,6 +25,6 @@ public interface Api {
      * @return
      */
     @FormUrlEncoded
-    @POST("app/token.do")
+    @POST("app/token")
     Call<String> refreshToken(@Field("token") String token);
 }

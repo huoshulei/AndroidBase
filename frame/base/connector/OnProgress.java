@@ -1,5 +1,7 @@
 package com.example.icogn.mshb.frame.base.connector;
 
+import io.reactivex.disposables.Disposable;
+
 /**
  * 项目名称:  MSHB
  * 类描述:
@@ -22,4 +24,9 @@ public interface OnProgress {
 
     void onError(String message);
 
+    void addDisposable(Disposable disposable);
+
+    void remove(Disposable disposable);
+
+    void clear();
 }
