@@ -16,6 +16,8 @@
 package com.example.icogn.mshb.utils.interceptor;
 
 
+import com.android.annotations.NonNull;
+import com.example.icogn.mshb.utils.annotations.NotProgurad;
 import com.example.icogn.mshb.utils.logger.Logger;
 
 import java.io.EOFException;
@@ -39,102 +41,44 @@ import okio.BufferedSource;
 
 
 /**
- * 网络请求日志拦截器
+ * 项目名称:  MSHB
+ * 类描述:
+ * 创建人:    ICOGN
+ * 创建时间:  2016/9/23 15:49
+ * 修改人:    ICOGN
+ * 修改时间:  2016/9/23 15:49
+ * 备注:
+ * 版本:
  */
+@NotProgurad
 public final class HttpLoggingInterceptor implements Interceptor {
     private static final Charset UTF8 = Charset.forName("UTF-8");
 
     public enum Level {
-        /**
-         * 不显示日志
-         */
+
         NONE,
-        /**
-         * 只显示请求和相应.
-         * <p>
-         * <p>Example:
-         * <pre>{@code
-         * --> POST /greeting http/1.1 (3-byte body)
-         *
-         * <-- 200 OK (22ms, 6-byte body)
-         * }</pre>
-         */
+
         BASIC,
-        /**
-         * 显示请求相应和头信息.
-         * <p>
-         * <p>Example:
-         * <pre>{@code
-         * --> POST /greeting http/1.1
-         * Host: example.com
-         * Content-Type: plain/text
-         * Content-Length: 3
-         * --> END POST
-         *
-         * <-- 200 OK (22ms)
-         * Content-Type: plain/text
-         * Content-Length: 6
-         * <-- END HTTP
-         * }</pre>
-         */
+
         HEADERS,
-        /**
-         * 显示全部信息.
-         * <p>
-         * <p>Example:
-         * <pre>{@code
-         * --> POST /greeting http/1.1
-         * Host: example.com
-         * Content-Type: plain/text
-         * Content-Length: 3
-         *
-         * 请求体?
-         * --> END POST
-         *
-         * <-- 200 OK (22ms)
-         * Content-Type: plain/text
-         * Content-Length: 6
-         *
-         * 响应体!
-         * <-- END HTTP
-         * }</pre>
-         */
+
         BODY
     }
 
-    public interface Log {
-        void log(String message);
-
-        /**
-         * A {@link Log} 默认日志输出平台.
-         */
-        Log DEFAULT = message -> Logger.t("HTTP").json(message);
-    }
 
     public HttpLoggingInterceptor() {
-        this(Log.DEFAULT);
     }
 
-    public HttpLoggingInterceptor(Log log) {
-        this.log = log;
-    }
-
-    private final Log log;
 
     private volatile Level level = Level.NONE;
 
-    /**
-     * 改变拦截器等级.
-     */
-    public HttpLoggingInterceptor setLevel(Level level) {
+
+    public HttpLoggingInterceptor setLevel(@NonNull Level level) {
         if (level == null) throw new NullPointerException("level == null. Use Level.NONE instead.");
         this.level = level;
         return this;
     }
 
-    public Level getLevel() {
-        return level;
-    }
 
     @Override
     public Response intercept(Chain chain) throws IOException {
@@ -157,33 +101,31 @@ public final class HttpLoggingInterceptor implements Interceptor {
         if (!logHeaders && hasRequestBody) {
             requestStartMessage += " (" + requestBody.contentLength() + "-请求体长度)";
         }
-        log.log(requestStartMessage);
-
+        Logger.t("请求地址").d(requestStartMessage);
         if (logHeaders) {
             if (hasRequestBody) {
                 // Request body headers are only present when installed as a network interceptor. Force
                 // them to be included (when available) so there values are known.
                 if (requestBody.contentType() != null) {
-                    log.log("Content-Type: " + requestBody.contentType());
+                    Logger.t("内容格式").d("Content-Type: " + requestBody.contentType());
                 }
                 if (requestBody.contentLength() != -1) {
-                    log.log("Content-Length: " + requestBody.contentLength());
+                    Logger.t("请求体长度").d("Content-Length: " + requestBody.contentLength());
                 }
             }
 
             Headers headers = request.headers();
             for (int i = 0, count = headers.size(); i < count; i++) {
                 String name = headers.name(i);
-                // Skip headers from the request body as they are explicitly logged above.
                 if (!"Content-Type".equalsIgnoreCase(name) && !"Content-Length".equalsIgnoreCase(name)) {
-                    log.log(name + ": " + headers.value(i));
+                    Logger.t("请求信息").d(name + ": " + headers.value(i));
                 }
             }
 
             if (!logBody || !hasRequestBody) {
-                log.log("--> 请求结束 " + request.method());
+                Logger.t("空请求体").d("--> 请求结束 " + request.method());
             } else if (bodyEncoded(request.headers())) {
-                log.log("--> 请求结束 " + request.method() + " (encoded body omitted)");
+                Logger.t("未知").d("--> 请求结束 " + request.method() + " (encoded body omitted)");
             } else {
                 Buffer buffer = new Buffer();
                 requestBody.writeTo(buffer);
@@ -194,13 +136,13 @@ public final class HttpLoggingInterceptor implements Interceptor {
                     charset = contentType.charset(UTF8);
                 }
 
-                log.log("");
                 if (isPlaintext(buffer)) {
-                    log.log(buffer.readString(charset));
-                    log.log("--> 请求结束 " + request.method()
+//                    log.log(buffer.readString(charset));
+                    Logger.t("请求体").json(buffer.readString(charset));
+                    Logger.t("请求结束").d("--> 请求结束 " + request.method()
                             + " (" + requestBody.contentLength() + "-字节 body)");
                 } else {
-                    log.log("--> 请求结束 " + request.method() + " (二进制 "
+                    Logger.t("请求结束").d("--> 请求结束 " + request.method() + " (二进制 "
                             + requestBody.contentLength() + "-字节 body omitted)");
                 }
             }
@@ -211,7 +153,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
         try {
             response = chain.proceed(request);
         } catch (Exception e) {
-            log.log("<-- 网络连接失败: " + e);
+            Logger.t("网络连接失败").d("<-- 网络连接失败: " + e);
             throw e;
         }
         long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
@@ -219,20 +161,20 @@ public final class HttpLoggingInterceptor implements Interceptor {
         ResponseBody responseBody  = response.body();
         long         contentLength = responseBody.contentLength();
         String       bodySize      = contentLength != -1 ? contentLength + "-字节" : "未知长度";
-        log.log("<-- " + response.code() + ' ' + response.message() + ' '
+        Logger.t("请求结束").d("<-- " + response.code() + ' ' + response.message() + ' '
                 + response.request().url() + " (" + tookMs + "ms" + (!logHeaders ? ", "
                 + bodySize + " body" : "") + ')');
 
         if (logHeaders) {
             Headers headers = response.headers();
             for (int i = 0, count = headers.size(); i < count; i++) {
-                log.log(headers.name(i) + ": " + headers.value(i));
+                Logger.t("响应信息").d(headers.name(i) + ": " + headers.value(i));
             }
 
             if (!logBody || !HttpHeaders.hasBody(response)) {
-                log.log("<-- 网络请求结束");
+                Logger.t("空响应体").d("<-- 网络请求结束");
             } else if (bodyEncoded(response.headers())) {
-                log.log("<-- 网络请求结束 (encoded body omitted)");
+                Logger.t("未知").d("<-- 网络请求结束 (encoded body omitted)");
             } else {
                 BufferedSource source = responseBody.source();
                 source.request(Long.MAX_VALUE); // Buffer the entire body.
@@ -244,21 +186,21 @@ public final class HttpLoggingInterceptor implements Interceptor {
                     try {
                         charset = contentType.charset(UTF8);
                     } catch (UnsupportedCharsetException e) {
-                        log.log("不能解码的响应体.<-- 网络请求结束");
+                        Logger.t("响应体解码失败").d("不能解码的响应体.<-- 网络请求结束");
                         return response;
                     }
                 }
 
                 if (!isPlaintext(buffer)) {
-                    log.log("<-- 网络请求结束 (二进制 " + buffer.size() + "-字节 body omitted)");
+                    Logger.t("响应体加密").d("<-- 网络请求结束 (二进制 " + buffer.size() + "-字节 body omitted)");
                     return response;
                 }
 
                 if (contentLength != 0) {
-                    log.log(buffer.clone().readString(charset));
+                    Logger.t("响应体").json(buffer.clone().readString(charset));
                 }
 
-                log.log("<-- 网络请求结束 (" + buffer.size() + "-字节 body)");
+                Logger.t("本次网络请求结束").d("<-- 网络请求结束 (" + buffer.size() + "-字节 body)");
             }
         }
 
@@ -267,8 +209,6 @@ public final class HttpLoggingInterceptor implements Interceptor {
 
     /**
      * 是否加密
-     * Returns true if the body in question probably contains human readable text. Uses a small sample
-     * of code points to detect unicode control characters commonly used in binary file signatures.
      */
     private static boolean isPlaintext(Buffer buffer) {
         try {
